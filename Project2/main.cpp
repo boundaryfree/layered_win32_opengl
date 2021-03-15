@@ -56,6 +56,10 @@ HWND createMainWindow() {
         800, 800,
         nullptr, nullptr, GetModuleHandle(nullptr), nullptr);
 
+    LONG Style = GetWindowLong(window, GWL_EXSTYLE);
+    SetWindowLong(window, GWL_EXSTYLE, Style | WS_EX_LAYERED);
+    SetLayeredWindowAttributes(window, 0, 150, LWA_ALPHA);
+
     return window;
 }
 
@@ -116,7 +120,7 @@ HWND createWindow(LPCWSTR title, bool pop=false, HBRUSH bk=0) {
 
     LONG Style = GetWindowLong(hWnd, GWL_EXSTYLE);
     SetWindowLong(hWnd, GWL_EXSTYLE, Style | WS_EX_LAYERED);
-    SetLayeredWindowAttributes(hWnd, 0, 100, LWA_ALPHA);
+    SetLayeredWindowAttributes(hWnd, 0, 0, LWA_ALPHA);
 
     return hWnd;
 }
